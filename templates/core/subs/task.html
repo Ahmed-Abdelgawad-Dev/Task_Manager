@@ -1,0 +1,42 @@
+<article class="flex{% if task.completed %} bg-green-50{% endif %}">
+
+    <div class="w-4/5 py-3">
+        <p
+            class="px-6 text-xs text-gray-900"
+            hx-get="/edit-task/{{ task.id }}/"
+            hx-target="this"
+            hx-swap="outerHTML"
+        >
+            {{ task.title }}
+        </p>
+    </div>
+
+    <div class="w-1/5 px-6 py-3 flex justify-end space-x-4">
+        {% if not task.completed %}
+            <form
+                hx-put="/update-task/{{ task.id }}/"
+                hx-target="closest article"
+                hx-swap="outerHTML"
+            >
+                <button class="text-sky-600 hover:text-sky-900">
+                    Done
+                </button>
+            </form>
+            {% else %}
+                <button class="text-orange-600 hover:text-red-900">
+                    Completed
+                </button>
+        {% endif %}
+        <a
+            href="#"
+            class="text-sky-600 hover:text-sky-900"
+            hx-confirm="You are going to delete a task, you sure?"
+            hx-target="closest article"
+            hx-swap="outerHTML swap:1s"
+            hx-delete="/delete-task/{{ task.id }}/"
+        >
+            Delete
+        </a>
+    </div>
+</article>
+

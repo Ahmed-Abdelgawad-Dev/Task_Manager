@@ -1,0 +1,12 @@
+<form
+    hx-post="/edit-task/{{ task.id }}/"
+    hx-target="closest article"
+    hx-swap="outerHTML"
+    class="flex"
+>
+    <label>
+        <input class="flex-1 mr-4 px-6 text-xs text-gray-900 border-0" type="text" name="title" value="{{ task.title }}" autofocus>
+    </label>
+
+    <button class="text-sky-600 hover:text-sky-900">Save</button>
+</form>
