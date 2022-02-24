@@ -3,11 +3,12 @@ from django.views.decorators.http import require_http_methods
 from django.http.response import HttpResponse
 from .models import Task
 
-
+# All tasks
 def tasks(request, *args, **kwargs):
     all_tasks = Task.objects.all()
     context   = {'all_tasks': all_tasks}
     return render(request, 'core/tasks.html', context)
+
 
 
 @require_http_methods(['POST'])
